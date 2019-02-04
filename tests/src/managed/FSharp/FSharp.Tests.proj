@@ -1,0 +1,18 @@
+<Project>
+  <ItemGroup>
+    <Project Include="$(MSBuildThisFileDirectory)\**\*.csproj" />
+  </ItemGroup>
+
+  <!-- Override clean from dir.traversal.targets and just remove the full BinDir -->
+  <Target Name="Build">
+    <Exec Command='"$(MSBuildToolsPath)\msbuild.exe" "@(Project)" /restore /t:Build /bl' />
+  </Target>
+
+  <Target Name="Rebuild">
+    <Exec Command='"$(MSBuildToolsPath)\msbuild.exe" "@(Project)" /restore /t:Rebuild' />
+  </Target>
+
+  <Target Name="Clean">
+    <Exec Command='"$(MSBuildToolsPath)\msbuild.exe" "@(Project)" /t:Clean' />
+  </Target>
+</Project>

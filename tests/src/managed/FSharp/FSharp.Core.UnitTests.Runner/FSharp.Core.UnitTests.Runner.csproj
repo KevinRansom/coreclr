@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project>
+
+  <Import Project="$([MSBuild]::GetPathOfFileAbove('dependencies.props', '$(MSBuildThisFileDirectory)../'))" />
+  <Import Project="$([MSBuild]::GetPathOfFileAbove('dir.sdkbuild.props', '$(MSBuildThisFileDirectory)../'))" />
+
+  <Import Sdk="Microsoft.NET.Sdk" Project="Sdk.props" />
+
+  <PropertyGroup>
+    <AssemblyName>FSharp.Core.UnitTests.Runner</AssemblyName>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <OutputType>Exe</OutputType>
+    <RestoreAdditionalProjectSources>C:\kevinransom\visualfsharp\artifacts\packages\Release</RestoreAdditionalProjectSources>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="FSharp.Core.UnitTests.Runner.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="FSharp.Core" Version="4.6.0" />
+    <PackageReference Include="Microsoft.FSharp.Core.UnitTests" Version="4.5.4" />
+    <PackageReference Include="Xunit" Version="$(XunitPackageVersion)" />
+  </ItemGroup>
+
+  <Import Sdk="Microsoft.NET.Sdk" Project="Sdk.targets" />
+
+</Project>

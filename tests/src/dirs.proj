@@ -15,6 +15,7 @@
   <Target Name="ResolveDisabledProjects" BeforeTargets="BuildAllProjects" >
     <ItemGroup>
       <DisabledProjects Include="TestWrappers*\**\*.csproj" />
+      <DisabledProjects Include="managed\FSharp\**\*.csproj" />
       <DisabledProjects Include="*\**\cs_template.csproj" />
       <DisabledProjects Include="Common\Coreclr.TestWrapper\Coreclr.TestWrapper.csproj" />
       <DisabledProjects Include="Common\test_runtime\test_runtime.csproj" />
@@ -36,6 +37,7 @@
     <!-- Test build is divided in slices which can be created within Test Group
          Priority 0 tests are build using Test Group 1 with 2 subgroups or slices -->
 
+<!--
     <ItemGroup Condition="$(__TestGroupToBuild) == '1' And $(TestBuildSlice) == '1'">
       <Project Include="*\**\*.csproj" Exclude="@(DisabledProjects)">
         <AdditionalProperties>OSGroup=$(OSGroup)</AdditionalProperties>
@@ -47,10 +49,11 @@
         <AdditionalProperties>OSGroup=$(OSGroup)</AdditionalProperties>
       </Project>
     </ItemGroup>
-
+-->
     <!-- Test build is divided in slices which can be created within Test Group
          Priority 1 or higher tests are build using Test Group 2 with 16 subgroups or slices -->    
 
+<!--
     <ItemGroup Condition="($(__TestGroupToBuild) == '2' And $(TestBuildSlice) == '1')">
       <Project Include="baseservices\**\*.csproj" Exclude="@(DisabledProjects)">
         <AdditionalProperties>OSGroup=$(OSGroup)</AdditionalProperties>
@@ -248,6 +251,13 @@
         <AdditionalProperties>OSGroup=$(OSGroup)</AdditionalProperties>
       </Project>
     </ItemGroup>
+-->
+    <ItemGroup>
+      <Project Include="managed\FSharp\**\*.proj" Exclude="@(DisabledProjects)">
+        <AdditionalProperties>OSGroup=$(OSGroup)</AdditionalProperties>
+      </Project>
+    </ItemGroup>
+
 
   </Target>
 
