@@ -1,7 +1,6 @@
 using System;
 using System.Threading;
 using Xunit.Runners;
-using Microsoft.FSharp.Core;
 
 namespace TestRunner
 {
@@ -19,14 +18,7 @@ namespace TestRunner
 
         static int Main(string[] args)
         {
-            if (args.Length == 0 || args.Length > 2)
-            {
-                Console.WriteLine("usage: TestRunner <assembly> [typeName]");
-                return 2;
-            }
-
-            var testAssembly = args[0];
-            var typeName = args.Length == 2 ? args[1] : null;
+            var testAssembly = typeof(FSharp.Core.UnitTests.LibraryTestFx).Assembly.Location;
 
             using (var runner = AssemblyRunner.WithoutAppDomain(testAssembly))
             {
@@ -36,7 +28,7 @@ namespace TestRunner
                 runner.OnTestSkipped = OnTestSkipped;
 
                 Console.WriteLine("Discovering...");
-                runner.Start(typeName);
+                runner.Start(null);
 
                 finished.WaitOne();
                 finished.Dispose();

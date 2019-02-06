@@ -15,7 +15,6 @@
   <Target Name="ResolveDisabledProjects" BeforeTargets="BuildAllProjects" >
     <ItemGroup>
       <DisabledProjects Include="TestWrappers*\**\*.csproj" />
-      <DisabledProjects Include="managed\FSharp\**\*.csproj" />
       <DisabledProjects Include="*\**\cs_template.csproj" />
       <DisabledProjects Include="Common\Coreclr.TestWrapper\Coreclr.TestWrapper.csproj" />
       <DisabledProjects Include="Common\test_runtime\test_runtime.csproj" />
@@ -253,7 +252,7 @@
     </ItemGroup>
 -->
     <ItemGroup>
-      <Project Include="managed\FSharp\**\*.proj" Exclude="@(DisabledProjects)">
+      <Project Include="managed\FSharp\**\*.csproj" Exclude="@(DisabledProjects)">
         <AdditionalProperties>OSGroup=$(OSGroup)</AdditionalProperties>
       </Project>
     </ItemGroup>
